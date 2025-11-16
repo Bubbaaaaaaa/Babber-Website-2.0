@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizzimy</title>
+<link rel="stylesheet" href="Bubba58102File.css">
+</head>
+<body>
+
+<div class="blue-lines" id="blueLines"></div>
+
+<div class="card">
+    <h1>RIZZIMY</h1>
+
+    <div class="input-row">
+        <div class="input-container">
+            <div class="custom-dropdown" id="rizzDropdown">
+                <div class="selected" data-value="choose">Choose A Topic</div>
+                <div class="options">
+                    <div data-value="romantic">Romantic</div>
+                    <div data-value="nerd">Nerd</div>
+                    <div data-value="business">Business</div>
+                    <div data-value="funny">Funny</div>
+                    <div data-value="gaming">Gaming</div>
+                    <div data-value="sigma">Sigma</div>
+                    <div data-value="sports">Sports</div>
+                    <div data-value="darkHumor">Dark Humor</div>
+                    <div data-value="slick">Slick</div>
+                    <div data-value="meme">Meme</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="rizzButton">Rizzify</button>
+    <p id="outputText"></p>
+</div>
+
+<div id="emojiContainer"></div>
+
+<script src="script.js"></script>
+<script>
+const blueLines = document.getElementById('blueLines');
+const flakesCount = 100;
+const blueShades = ['#00f0ff','#3c58d6','#0ff','#7FDBFF','#1CA9C9','#4da6ff','#3399ff','#66ccff','#99ddff','#00bfff','#5ac8ff','#3399cc'];
+
+for (let i = 0; i < flakesCount; i++) {
+    const line = document.createElement('div');
+    line.className = 'line';
+    line.style.top = Math.random() * 100 + 'vh';
+    line.style.left = Math.random() * 100 + 'vw';
+    line.style.backgroundColor = blueShades[Math.floor(Math.random() * blueShades.length)];
+    line.style.width = 10 + Math.random()*20 + 'px';
+    line.style.height = 1 + Math.random()*3 + 'px';
+    const rotSpeed = (Math.random() - 0.5) * 2;
+    let rotation = Math.random() * 360;
+    const speed = 20 + Math.random() * 40;
+    line.style.animation = `moveRight ${speed}s linear infinite`;
+    function animateRotation(){
+        rotation += rotSpeed;
+        line.style.transform = `rotate(${rotation}deg)`;
+        requestAnimationFrame(animateRotation);
+    }
+    animateRotation();
+    if(Math.random() > 0.5){
+        line.style.animation += `, blink ${1 + Math.random()*2}s infinite alternate`;
+    } else {
+        line.style.boxShadow = `0 0 6px ${line.style.backgroundColor}, 0 0 15px ${line.style.backgroundColor}`;
+    }
+    blueLines.appendChild(line);
+}
+</script>
+
+</body>
+</html>
